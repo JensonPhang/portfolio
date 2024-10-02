@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div.calculatorContainer{
+            padding: 20px;
+            width: 660px;
+            height: 580px;
+            border-radius: 50px;
+            background-color: rgb(61, 60, 67);
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 50px;
+        }
+        div.screen{
+            width: 560px;
+            overflow: hidden;
+            display: flex;
+            height: 160px;
+            border: rgba(0, 0, 0, 0.1);
+            background-color: rgb(56, 55, 62);
+            border-radius: 20px;
+            margin-left: 50px;
+            margin-top: 45px;
+        }
+        .screenText{
+            color: rgb(243, 168, 82);
+            font-size: 50px;
+            margin-top: 80px;
+            font-family: sans-serif;
+            margin-left: 5px;
+        }
+        div.buttonContainer{
+            max-width: 560px;
+            margin-left: 50px;
+            margin-top: 20px;
+        }
+        button{
+            width: 80px;
+            height: 80px;
+            margin: -2px;
+            box-sizing: border-box;
+            font-size: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            background-color: orange;
+            color: rgb(61, 61, 61);
+            transition: color 0.2s, background-color 0.2s;
+            user-select: none;
+        }
+        .num{
+            background-color: rgb(61, 61, 61);
+            color: orange;
+        }
+        button:hover{
+            background-color: rgb(61, 61, 61);
+            color: orange;
+            cursor: pointer;
+        }
+        .num:hover{
+            background-color: orange;
+            color: rgb(61, 61, 61);   
+        }
+    </style>
+</head>
+<body>
+    <div class="calculatorContainer">
+        <div class="screen"><span class="screenText">HELLO, WORLD</span></div>
+        <div class="buttonContainer">
+            <button class="num">1</button>
+            <button class="num">2</button>
+            <button class="num">3</button>
+            <button class="operator">+</button>
+            <button class="operatorSub">-</button>
+            <button class="operatorTrig">sin</button>
+            <button class="operatorTrigInverse">asin</button>
+            <button class="num">4</button>
+            <button class="num">5</button>
+            <button class="num">6</button>
+            <button class="operatorX">x</button>
+            <button class="operator">/</button>
+            <button class="operatorTrig">cos</button>  
+            <button class="operatorTrigInverse">acos</button>  
+            <button class="num">7</button>
+            <button class="num">8</button>
+            <button class="num">9</button>
+            <button class="operatorPara">(</button>
+            <button class="operatorPara">)</button>
+            <button class="operatorTrig">tan</button>
+            <button class="operatorTrigInverse">atan</button>
+            <button class="numClear">C</button>
+            <button class="num">0</button>
+            <button class="operatorAns">ans</button>
+            <button class="numEqual">=</button>
+            <button class="operator">%</button>
+            <button class="operatorDecimal">.</button>
+            <button class="OperatorPi">∏</button>
+        </div>
+            <script>
+                let calc = "";
+                let cond = 4;
+                let ans = 1;
+                let paraIndex = 0;
+                // cond = 1: after number, 2: after operator, 3: after parantheses, 4: after equal 5: after ans, 6: after open parantheses, 7: after comma
+                const operatorX = document.querySelector('.operatorX');
+                const MyNums = document.querySelectorAll('.num');
+                const OtherOp = document.querySelectorAll(".operator");
+                const equalOp = document.querySelector(".numEqual");
+                const clearOp = document.querySelector(".numClear");
+                const ansOp = document.querySelector(".operatorAns")
+                const paraOp = document.querySelectorAll(".operatorPara");
+                const subOp = document.querySelector(".operatorSub");
+                const TrigOp = document.querySelectorAll(".operatorTrig");
+                const iTrigOp = document.querySelectorAll(".operatorTrigInverse");
+                const deci = document.querySelector('.operatorDecimal');
+                const reset = document.querySelector('.reset');
+                const pi = 3.141592653;
+                console.log(MyNums);
+                const label = document.querySelector('.screenText');
+                MyNums.forEach(num =>{
+                    num.addEventListener('click', function(){
+                        if(cond == 4){
+                            label.innerHTML = "";
+                            calc = "";
+                        } if(cond!==3){
+                            label.innerHTML += num.innerHTML;
+                            calc += num.innerHTML;
+
+                            console.log(calc);
+                            cond = 1;
+                        }
+                        
+                    })
+                })
+                deci.addEventListener('click', function(){
+                    if(cond==1){
+                            label.innerHTML += deci.innerHTML;
+                            calc += deci.innerHTML;
+
+                            console.log(calc);
+                            cond = 7;
+                    }   
+                })
+                OtherOp.forEach(op =>{
+                    op.addEventListener('click', function(){
+                        if (cond==4){
+                            label.innerHTML = "ans" + op.innerHTML;
+                            calc = ans + op.innerHTML;
+
+                            cond = 2;
+                            console.log(calc);
+                        } else
+                        if(cond == 1||cond == 5||cond == 3){
+                            label.innerHTML += op.innerHTML;
+                            calc += op.innerHTML;
+
+                            cond = 2;
+                            console.log(calc);
+                        }
+                    })
+                })
+                subOp.addEventListener('click', function(){
+                    if (cond==4){
+                            label.innerHTML = "ans" + subOp.innerHTML;
+                            calc = ans+ subOp.innerHTML;
+
+                            cond = 2;
+                            console.log(calc);
+                        } else
+                        if(cond == 1||cond == 5||cond == 6){
+                            label.innerHTML += subOp.innerHTML;
+                            calc += subOp.innerHTML;
+
+                            cond = 2;
+                            console.log(calc);
+                        }
+                })
+                paraOp[0].addEventListener('click', function(){
+                        if(cond == 4){
+                            label.innerHTML = "";
+                            calc = "";
+                        }
+                        if(cond==2||cond==3||cond==4||cond==6){
+                        label.innerHTML += paraOp[0].innerHTML;
+                        calc += paraOp[0].innerHTML;
+
+                        cond = 6;
+                        console.log(calc);
+                        } 
+                        if(cond == 1|| cond ==5){
+                        label.innerHTML += paraOp[0].innerHTML;
+                        calc += "*" + paraOp[0].innerHTML;
+
+                        cond = 6;
+                        console.log(calc);
+                        }
+                        paraIndex++;
+                    })
+                    paraOp[1].addEventListener('click', function(){
+                        if(paraIndex > 0){
+                        if(cond==1||cond==3||cond==6||cond ==5){
+                        label.innerHTML += paraOp[1].innerHTML;
+                        calc += paraOp[1].innerHTML;
+
+                        cond = 3;
+                        console.log(calc);
+                        }
+                        paraIndex--;}
+                    })
+                            
+                    
+                operatorX.addEventListener('click', function(){
+                    if (cond==4){
+                            label.innerHTML = "ans" + operatorX.innerHTML;
+                            calc = ans + "*";
+
+                            cond = 2;
+                            console.log(calc);
+                        }
+                    if(cond==1||cond == 5||cond == 3){
+                        label.innerHTML += operatorX.innerHTML;
+                        calc += "*";
+                        cond = 2;
+                        }
+                    }
+                )
+                TrigOp.forEach(op =>{
+                    op.addEventListener('click', function(){
+                        if(cond == 4){
+                            label.innerHTML = "ans" +op.innerHTML+"(";
+                            calc = ans +"*Math."+op.innerHTML+"("+2*pi+"/360*";
+                            paraIndex++;
+                        }
+                        if(cond == 1||cond == 5||cond == 3){
+                            label.innerHTML += op.innerHTML+"(";
+                            calc += "*Math."+op.innerHTML+"("+2*pi+"/360*";
+                            paraIndex++;
+                        }
+                        if(cond == 2||cond == 6){
+                            label.innerHTML += op.innerHTML+"(";
+                            calc += "Math."+op.innerHTML+"("+2*pi+"/360*";
+                            paraIndex++;
+                        }
+                        cond = 2;
+                        
+                })
+            })
+            iTrigOp.forEach(op =>{
+                    op.addEventListener('click', function(){
+                        if(cond == 4){
+                            label.innerHTML = "ans" +op.innerHTML+"(";
+                            calc = ans +"*360/2/"+pi+"*Math."+op.innerHTML+"(";
+                            paraIndex++;
+                        }
+                        if(cond == 1||cond == 5||cond == 3){
+                            label.innerHTML += op.innerHTML+"(";
+                            calc += "*360/2/"+pi+"*Math."+op.innerHTML+"(";
+                            paraIndex++;
+                        }
+                        if(cond == 2||cond == 6){
+                            label.innerHTML += op.innerHTML+"(";
+                            calc += "360/2/"+pi+"*Math."+op.innerHTML+"(";
+                            paraIndex++;
+                        }
+                        cond = 2;
+                        
+                })
+            })
+                equalOp.addEventListener('click', function(){
+                    if(paraIndex > 0){
+                        while(paraIndex > 0){
+                        calc += ")";
+                        paraIndex--;
+                        console.log(calc);
+                        }
+                    }
+                    if(cond==1||cond == 5||cond == 3){
+                        ans = eval(calc);
+                        label.innerHTML = Math.round(ans*1000)/1000;
+                        calc = ans;
+                        cond = 4;
+                    } else if(cond==4){
+                        label.innerHTML = Math.round(ans*1000)/1000 ;
+                        calc = "";
+                        cond = 4;
+                    }
+                    else {
+                        label.innerHTML = "Error";
+                        calc = "";
+                        cond = 4;
+                    }
+                })
+                clearOp.addEventListener('click', function(){
+                    label.innerHTML = "";
+                    paraIndex = 0;
+                    calc = "";
+                    cond = 4;
+                })
+                ansOp.addEventListener('click', function(){
+                    if(cond == 4){
+                            label.innerHTML = "";
+                            calc = "";
+                        }
+                    if (cond == 1||cond == 5){
+                        label.innerHTML += "ans";
+                        calc += "*" + ans;
+                    } else {
+                        label.innerHTML += "ans";
+                        calc += ans;
+                        cond = 5;
+                    }
+                    
+
+                })
+                document.querySelector(".OperatorPi").addEventListener('click', function(){
+                      if(cond==1||cond == 5||cond == 3){
+                        label.innerHTML += this.innerHTML;
+                        calc += "*Math.PI";
+                        cond = 1;
+                        }   
+                if (cond==4){
+                            label.innerHTML = this.innerHTML;
+                            calc = "Math.PI";
+
+                            cond = 1;
+                            console.log(calc);
+                        }
+                    }
+                )
+                
+                
+                    
+                
+            </script>
+        
+    </div>
+</body>
+</html>
