@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="logoIGS.png">
+</head>
+<body>
+    <div class="openingAnim">
+        <h2>Hello<span class="worldText"> World!</span></h2>
+        <div class="openingBackground">
+
+        </div>
+    </div>
+    <div class="section-container">
+        <div class="options-menu">
+            <span onclick="menuChangeSection(0)">Main Page</span>
+            <span onclick="menuChangeSection(1)">About Me</span>
+            <span onclick="menuChangeSection    (2)">Projects</span>
+        </div>
+        <div class="navbar">
+            <button class="mainBtn">Portfolio</button>
+            <button class="sideBtn" onclick="changeSection(2)">Projects</button>
+            <button class="sideBtn" onclick="changeSection(1)">About Me</button>
+            <button class="sideBtn" onclick="changeSection(0)">Main Page</button>
+            <button class="options-bar"><img src="menu.png" alt="options bar"></button>
+        </div>
+        <div class="section">
+            <div class="slideContainerPC">
+                <div class="slide-section one"><img src="certif1.jpeg" alt=""></div>
+                <div class="slide-section two"><img src="HELLO.png" alt=""></div>
+                <div class="slide-section three"><img src="certif2.jpeg" alt=""></div>
+                <div class="slide-section four"><img src="certif3.jpeg" alt=""></div>
+                <div class="slideOpt sleft" onclick="manual2ChangeSlide(-1)"></div>
+                <div class="slideOpt sright" onclick="manual2ChangeSlide(1)"></div>
+                <div class="slide-control">
+                    <div class="opt active" onclick="manualChangeSlide(0)"></div>
+                    <div class="opt" onclick="manualChangeSlide(1)"></div>
+                    <div class="opt" onclick="manualChangeSlide(2)"></div>
+                    <div class="opt" onclick="manualChangeSlide(3)"></div>
+                </div>
+            </div>
+            <div class="subsection-visi">
+                <h1>VISI</h1>
+                <p>"Memajukan peran teknologi sebagai sarana media komunikasi antarsiswa dan meningkatkan dampak positif dari internet sehingga menjadi pendukung kegiatan-kegiatan sekolah"</p>
+            </div>
+            <div class="subsection-misi">
+                <h1>MISI</h1>
+                <p>"Mendukung <b><i>pengintegrasian</i></b> website sebagai <b><i>media komunikasi</i></b> untuk menginformasikan pengumuman tentang kegiatan-kegiatan sekolah"</p>
+                <p>"Membangun <b><i>kerja sama</i></b> antar berbagai sekbid sehingga <b><i>meningkatkan kualitas</i></b> dari hasil akhir multimedia"</p>
+            </div>
+        </div>
+        <div class="section">
+            <div class="subsection-kelebihan">
+                <div class="subsection-kelebihan-title">
+                    <div class="textOpt opaque" id="left" onclick="changeSection2(0)">Keunggulan</div>
+                    <div class="textOpt" id="right" onclick="changeSection2(1)">Kemampuan</div>
+                </div>
+                <div class="subsection-kelebihan-slide-container">
+                    <div class="subsection-kelebihan-slide"><p>
+                        Mempunyai logika yang baik, cepat menganalisis dan mempelajari suatu hal, sehingga mencari solusi <br><br>
+                        Aktif dalam lingkungan sekolah <br><br>
+                        Selalu penasaran tentang hal baru dan mempunyai keinginan untuk belajar dari pengalaman yang tinggi
+                        </p></div>
+                    <div class="subsection-kelebihan-slide"><p>
+                        Frontend (HTML, CSS, JavaScript, Basic Mobile Interface) <br><br>
+                        Basic Backend (Java, PHP) <br><br>
+                        Animation <br><br>
+                        Sound System
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="subsection-motivation">
+                <h1>MOTIVASI</h1>
+                <p> Ingin mempunyai dampak positif bagi lingkungan sekolah serta teman-teman saya <br>
+                    Menambah pengalaman berorganisasi serta mengenal lebih banyak orang <br>
+                    Meningkatkan skill dan bakat yang saya miliki melalui pengalaman dari berorganisasi <br>
+                </p>
+            </div>
+            <div class="subsection-pengalaman">
+                <h1>PENGALAMAN DAN PRESTASI</h1>
+                <p> OSIS 2021-2022 (John Paul's School KHI Bekasi) <br>
+                    Panitia lomba AxAvo (Bekasi) <br>
+                    Valedictorian, Class of 2024
+                </p>
+            </div>
+        </div>
+        <div class="section">
+            <a href="https://jensonphang.github.io/FurnitureFrontEnd/home.html"><div class="projects">
+                <img src="project1.png" alt="">
+                <h1>Furniture Marketing</h1>
+                <p>A project I did for last year, not mobile operable and no scaling by the way.</p>
+            </div></a>
+            <a href="https://jensonphang.github.io/portfolio/calculator.html"><div class="projects">
+                <img src="project2.png" alt="">
+                <h1>Calculator</h1>
+                <p>Another small project that I made recently, lots of error checks, but still prone to errors, also not optimized for mobile devices</p>
+            </div></a>
+        </div>
+        <footer>
+            <img id="igLogo" src="igLogo.png" alt="">
+            <b id="igContact">jenson_pov</b>
+            <br>
+            <img id="waLogo" src="waLogo.png" alt="">
+            <b id="waContact">+62 812 8328 5847</b>
+            <b id="footerDetails">Made by Hilarius Jenson Phang</b>
+        </footer>
+    </div> 
+    <script> //note: ga keburu pindah script ini maaf 
+        let delay = 0;
+        let navbar = document.querySelector('.navbar')
+        let optionsBtn = document.querySelector(".options-bar");
+        let optionsMenu = document.querySelector(".options-menu");
+        let toggle = 0;
+        let autoIndexPC = 0;
+        let slides = document.querySelectorAll(".slide-section");
+        let opt = document.querySelectorAll(".opt");
+        let section = document.querySelectorAll(".section");
+        let kelebihansubsec = document.querySelectorAll(".textOpt");
+        let kelebihansubsecslide = document.querySelectorAll(".subsection-kelebihan-slide");
+        
+        window.onbeforeunload = function (){
+            window.scrollTo(0, 0);
+        }
+        let openingInterval = setInterval(noScroll, 3000);
+        function noScroll(){
+            document.body.style.overflowY = "scroll";
+            clearInterval(openingInterval);
+        }
+        function startDelay(ms){
+            delay = 1;
+            let delayIndex = 1;
+            let delayInterval = setInterval(function(){
+                    if (delayIndex == 0){
+                        clearInterval(delayInterval);
+                        delay = 0;
+                    } else {
+                        delayIndex--;
+                    }
+                }, ms)
+        }  //delay, parameter is delay timing (ms)
+        optionsBtn.addEventListener("click", toggleMenu);
+        toggleMenu(0);
+        function toggleMenu(){
+            if(toggle == 1){
+                optionsMenu.style.top = "69px";
+                toggle = 0;
+            } else {
+                optionsMenu.style.top = "-200px";
+                toggle = 1;
+            }
+        }
+        function menuChangeSection(i){
+            optionsMenu.style.top = "-200px";
+            toggle = 1;
+            changeSection(i);
+        }
+        function changeSection(i){
+            for(x = 0; x < 3; x++){
+                section[x].style.display = "none";
+            }
+            section[i].style.display = "block";
+        }
+        changeSection(0);
+        let autoChangeSlideInterval = setInterval(autoChangeSlide, 2500); //automatic slide timer
+        function autoChangeSlide(){
+            autoIndexPC++;
+            if(autoIndexPC > 3){
+                autoIndexPC = 0;
+            }
+            changeSlide(autoIndexPC);
+        }
+        function manualChangeSlide(i){
+            if (delay == 0){
+                clearInterval(autoChangeSlideInterval);
+                changeSlide(i);
+                autoIndexPC = i;
+                startDelay(200);
+            }
+        }
+        function manual2ChangeSlide(i){
+            if (delay == 0){
+                autoIndexPC+= i;
+                if(autoIndexPC > 3){
+                    autoIndexPC = 0;
+                } else if(autoIndexPC <0){
+                    autoIndexPC = 3;
+                }
+                clearInterval(autoChangeSlideInterval);
+                changeSlide(autoIndexPC);
+                startDelay(300);
+            }           
+        }
+        function changeSlide(index){
+            
+            for(i = 0; i < 4; i++){
+                opt[i].className = "opt";
+            }
+            slides[index].className = "slide-section one";
+            slides[(index+1)%4].className = "slide-section two";
+            slides[(index+2)%4].className = "slide-section three";
+            slides[(index+3)%4].className = "slide-section four";
+            
+            opt[index].className = "opt active";
+        }
+        function changeSection2(x){
+            if (x == 0){
+                kelebihansubsec[0].className = "textOpt opaque";
+                kelebihansubsec[1].className = "textOpt";
+                kelebihansubsecslide[0].className = "subsection-kelebihan-slide";
+                kelebihansubsecslide[1].className = "subsection-kelebihan-slide none";
+            } else {
+                kelebihansubsec[1].className = "textOpt opaque";
+                kelebihansubsec[0].className = "textOpt";
+                kelebihansubsecslide[1].className = "subsection-kelebihan-slide";
+                kelebihansubsecslide[0].className = "subsection-kelebihan-slide none";
+            }
+        }
+        changeSection2(0);
+    </script>
+</body>
+</html>
